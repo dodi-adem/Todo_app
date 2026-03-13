@@ -1,20 +1,30 @@
-<h3>TO DO</h3>
-
-<form method="POST" action="/">
-    {% csrf_token %}
-    {{ form.title }}
-    <input type="submit" name="Create Task">
-</form>
-
-{% for task in tasks%}
-<div>
-    <a href="{% url 'update_task' task.id %}">Update</a>
-    <a href="{% url 'delete' task.id %}">Delete</a>
-    
-    {% if task.completed == True %}
-        <del>{{ task }}</del>
-    {% else %}
-        <span>{{ task }}</span>
-    {% endif %}
-</div>    
-{% endfor%}
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h3>TO DO</h3>
+        
+        <form method="POST" action="/">
+            {% csrf_token %}
+            {{ form.title }}
+            <input type="submit" value="Submit">
+        </form>
+        
+        {% for task in tasks %}
+            <div class="task-item">
+                <div class="task-buttons">
+                    <a href="{% url 'update_task' task.id %}" class="edit-btn">Edit</a>
+                    <a href="{% url 'delete' task.id %}" class="delete-btn">Delete</a>
+                </div>
+                <div class="task-text {% if task.completed %}completed{% endif %}">
+                    {{ task }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

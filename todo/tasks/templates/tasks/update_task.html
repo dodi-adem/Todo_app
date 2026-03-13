@@ -1,7 +1,17 @@
-<h3>Update Task</h3>
-
-<form method="POST" action="">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" name="Update Task">
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h3>Update Task</h3>
+        <form method="POST" action="" class="form-container">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update Task">
+        </form>
+    </div>
+</body>
+</html>
